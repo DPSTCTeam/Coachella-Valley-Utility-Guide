@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coachella Valley Utility Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1c7cad;
+    --blue-dark: #145f87;
+    --blue-light: #e8f4fb;
+    --green: #3B6D11;
+    --amber: #854F0B;
+    --purple: #534AB7;
+    --gray: #5F5E5A;
+    --red: #993C1D;
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #6b6b6b;
+    --border: rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-sm: 6px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--blue);
+    color: white;
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(0,0,0,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .header-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.9);
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .header p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+  }
+
+  /* MAIN CONTENT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  /* CONTROLS */
+  .controls {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 15px;
+    pointer-events: none;
+  }
+  .controls input[type="text"] {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .controls input[type="text"]:focus { border-color: var(--blue); }
+
+  .filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .filter-btn {
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    padding: 5px 13px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+  /* CITY GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 16px;
+  }
+
+  .city-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .city-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  .city-header {
+    background: var(--blue-light);
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid rgba(28,124,173,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .city-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--blue);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .city-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--blue-dark);
+  }
+
+  .city-body { padding: 1rem 1.25rem; }
+
+  .utility-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .utility-row:last-child { border-bottom: none; }
+
+  .util-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+    min-width: 52px;
+    text-align: center;
+  }
+  .badge-electric { background: #e8f4fb; color: #145f87; }
+  .badge-water    { background: #e8f4fb; color: #145f87; }
+  .badge-gas      { background: #fdf0e0; color: #854F0B; }
+  .badge-trash    { background: #eaf3de; color: #3B6D11; }
+  .badge-sewer    { background: #f1efe8; color: #5F5E5A; }
+  .badge-internet { background: #eeedfe; color: #534AB7; }
+  .badge-phone    { background: #faece7; color: #993C1D; }
+
+  .util-info { flex: 1; min-width: 0; }
+  .util-provider {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .util-phone {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+  .util-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  .hidden { display: none !important; }
+
+  /* NO RESULTS */
+  .no-results {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .footer strong { color: var(--text); }
+
+  /* PRINT */
+  @media print {
+    body { background: white; }
+    .controls { display: none; }
+    .city-card { break-inside: avoid; box-shadow: none !important; transform: none !important; }
+    .header { background: var(--blue) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 2rem 1.25rem 1.75rem; }
+    .controls { padding: 1rem; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">Greater Palm Springs Area</div>
+  <h1>Coachella Valley<br>Utility Guide</h1>
+  <p>Residential service providers by city &mdash; for new homeowners &amp; buyers</p>
+</div>
+
+<div class="container">
+
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="searchInput" placeholder="Search city or provider..." oninput="filterCards()" />
+    </div>
+    <div class="filter-group" id="filterBtns">
+      <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+      <button class="filter-btn" onclick="setFilter('electric',this)">Electric</button>
+      <button class="filter-btn" onclick="setFilter('water',this)">Water</button>
+      <button class="filter-btn" onclick="setFilter('gas',this)">Gas</button>
+      <button class="filter-btn" onclick="setFilter('trash',this)">Trash</button>
+      <button class="filter-btn" onclick="setFilter('internet',this)">Cable / Internet</button>
+      <button class="filter-btn" onclick="setFilter('sewer',this)">Sewer</button>
+    </div>
+  </div>
+
+  <div class="grid" id="cityGrid">
+
+    <!-- INDIO -->
+    <div class="city-card" data-city="indio">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">Indio</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Imperial Irrigation District (IID)</div>
+            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; iid.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Indio Water Authority (IWA)</div>
+            <div class="util-phone">(760) 391-4038 &nbsp;|&nbsp; indiowater.org</div>
+            <div class="util-note">Some areas: CVWD &mdash; (760) 398-2651</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Burrtec Waste &amp; Recycling</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="sewer">
+          <span class="util-badge badge-sewer">Sewer</span>
+          <div class="util-info">
+            <div class="util-provider">Valley Sanitary District</div>
+            <div class="util-phone">(760) 347-2356</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier FiOS</div>
+            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (855) 525-9100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LA QUINTA -->
+    <div class="city-card" data-city="la quinta">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">La Quinta</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Imperial Irrigation District (IID)</div>
+            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; iid.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Coachella Valley Water District (CVWD)</div>
+            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; cvwd.org</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Burrtec Waste Industries</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier</div>
+            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (844) 740-0071</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PALM DESERT -->
+    <div class="city-card" data-city="palm desert">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">Palm Desert</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Southern California Edison (SCE)</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-note">Some areas: IID &mdash; (760) 398-5811</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Coachella Valley Water District (CVWD)</div>
+            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; cvwd.org</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Burrtec Waste &amp; Recycling</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier</div>
+            <div class="util-phone">Spectrum: (888) 892-2253 &nbsp;|&nbsp; Frontier: (877) 775-6373</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RANCHO MIRAGE -->
+    <div class="city-card" data-city="rancho mirage">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">Rancho Mirage</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Southern California Edison (SCE)</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-note">N of Gerald Ford / E of Bob Hope Dr: IID &mdash; (760) 482-9600</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Coachella Valley Water District (CVWD)</div>
+            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; cvwd.org</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Burrtec Waste &amp; Recycling</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier &nbsp;/&nbsp; HughesNet</div>
+            <div class="util-phone">Spectrum: (888) 438-2427 &nbsp;|&nbsp; Frontier: (844) 903-2037</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INDIAN WELLS -->
+    <div class="city-card" data-city="indian wells">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">Indian Wells</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Southern California Edison (SCE)</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-note">Some areas: IID &mdash; (800) 303-7756</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Coachella Valley Water District (CVWD)</div>
+            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; cvwd.org</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Burrtec Waste &amp; Recycling</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier</div>
+            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (877) 751-5272</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COACHELLA -->
+    <div class="city-card" data-city="coachella">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">Coachella</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Imperial Irrigation District (IID)</div>
+            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; iid.com</div>
+            <div class="util-note">Some areas: SCE &mdash; (800) 655-4555</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Coachella Water Authority</div>
+            <div class="util-phone">(760) 398-2702 &nbsp;|&nbsp; coachella.org</div>
+            <div class="util-note">Also: CVWD &mdash; (760) 398-2651</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Burrtec Waste</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier &nbsp;/&nbsp; Windstream</div>
+            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (855) 525-9100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PALM SPRINGS -->
+    <div class="city-card" data-city="palm springs">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">Palm Springs</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Southern California Edison (SCE)</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Desert Water Agency (DWA)</div>
+            <div class="util-phone">(760) 323-4971 &nbsp;|&nbsp; dwa.org</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Palm Springs Disposal Services</div>
+            <div class="util-phone">(800) 973-3873</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="sewer">
+          <span class="util-badge badge-sewer">Sewer</span>
+          <div class="util-info">
+            <div class="util-provider">City of Palm Springs</div>
+            <div class="util-phone">(760) 323-8166</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier</div>
+            <div class="util-phone">Spectrum: (760) 340-1312 &nbsp;|&nbsp; Frontier: (866) 945-4714</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATHEDRAL CITY -->
+    <div class="city-card" data-city="cathedral city">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">Cathedral City</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Southern California Edison (SCE)</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Desert Water Agency (W &amp; S of Whitewater Wash)</div>
+            <div class="util-phone">(760) 323-4971</div>
+            <div class="util-note">E &amp; N of Whitewater Wash: CVWD &mdash; (800) 262-2651</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Burrtec Waste Industries</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum</div>
+            <div class="util-phone">(760) 764-5313</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESERT HOT SPRINGS -->
+    <div class="city-card" data-city="desert hot springs">
+      <div class="city-header"><div class="city-dot"></div><div class="city-name">Desert Hot Springs</div></div>
+      <div class="city-body">
+        <div class="utility-row" data-type="electric">
+          <span class="util-badge badge-electric">Electric</span>
+          <div class="util-info">
+            <div class="util-provider">Southern California Edison (SCE)</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="water">
+          <span class="util-badge badge-water">Water</span>
+          <div class="util-info">
+            <div class="util-provider">Mission Springs Water District</div>
+            <div class="util-phone">(760) 329-6448</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="gas">
+          <span class="util-badge badge-gas">Gas</span>
+          <div class="util-info">
+            <div class="util-provider">SoCalGas</div>
+            <div class="util-phone">(877) 238-0092 &nbsp;|&nbsp; socalgas.com</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="trash">
+          <span class="util-badge badge-trash">Trash</span>
+          <div class="util-info">
+            <div class="util-provider">Desert Valley Disposal</div>
+            <div class="util-phone">(760) 329-5030</div>
+          </div>
+        </div>
+        <div class="utility-row" data-type="internet">
+          <span class="util-badge badge-internet">Internet</span>
+          <div class="util-info">
+            <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier FiOS</div>
+            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (855) 525-9100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-results hidden" id="noResults">No cities or providers match your search.</div>
+
+  </div>
+
+  <div class="footer">
+    <strong>&#9888; Important note:</strong> Service territories &mdash; especially for electric and water &mdash; vary by parcel address, not just city. Always confirm the correct provider using the property's specific address. Phone numbers and providers verified from city and regional utility sources, 2025&ndash;2026. Information is subject to change.
+  </div>
+
+</div>
+
+<script>
+  let activeFilter = 'all';
+
+  function setFilter(type, btn) {
+    activeFilter = type;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterCards();
+  }
+
+  function filterCards() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.city-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cityName = card.dataset.city.toLowerCase();
+      const cardText = card.textContent.toLowerCase();
+      const matchSearch = !q || cardText.includes(q) || cityName.includes(q);
+
+      let matchFilter = true;
+      if (activeFilter !== 'all') {
+        const rows = card.querySelectorAll('.utility-row');
+        let hasType = false;
+        rows.forEach(r => { if (r.dataset.type === activeFilter) hasType = true; });
+        matchFilter = hasType;
+      }
+
+      const show = matchSearch && matchFilter;
+      card.classList.toggle('hidden', !show);
+      if (show) visibleCount++;
+
+      if (activeFilter !== 'all') {
+        card.querySelectorAll('.utility-row').forEach(row => {
+          row.style.display = (row.dataset.type === activeFilter) ? 'flex' : 'none';
+        });
+      } else {
+        card.querySelectorAll('.utility-row').forEach(row => {
+          row.style.display = 'flex';
+        });
+      }
+    });
+
+    document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
+  }
+</script>
+</body>
+</html>
