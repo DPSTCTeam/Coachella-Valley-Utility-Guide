@@ -26,14 +26,8 @@
     --radius-sm: 6px;
   }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-  /* HEADER */
   .header {
     background: var(--blue);
     color: white;
@@ -63,27 +57,11 @@
     margin-bottom: 1rem;
     color: rgba(255,255,255,0.9);
   }
-  .header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-  }
-  .header p {
-    font-size: 15px;
-    color: rgba(255,255,255,0.75);
-    font-weight: 300;
-  }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 600; line-height: 1.2; margin-bottom: 0.5rem; }
+  .header p { font-size: 15px; color: rgba(255,255,255,0.75); font-weight: 300; }
 
-  /* MAIN CONTENT */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.25rem 4rem;
-  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
-  /* CONTROLS */
   .controls {
     background: var(--surface);
     border-radius: var(--radius);
@@ -95,20 +73,8 @@
     gap: 12px;
     align-items: center;
   }
-  .search-wrap {
-    position: relative;
-    flex: 1;
-    min-width: 200px;
-  }
-  .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    font-size: 15px;
-    pointer-events: none;
-  }
+  .search-wrap { position: relative; flex: 1; min-width: 200px; }
+  .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 15px; pointer-events: none; }
   .controls input[type="text"] {
     width: 100%;
     padding: 9px 12px 9px 36px;
@@ -122,12 +88,7 @@
     transition: border-color 0.15s;
   }
   .controls input[type="text"]:focus { border-color: var(--blue); }
-
-  .filter-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+  .filter-group { display: flex; flex-wrap: wrap; gap: 6px; }
   .filter-btn {
     font-size: 12px;
     font-family: 'DM Sans', sans-serif;
@@ -144,56 +105,18 @@
   .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
   .filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
 
-  /* CITY GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 16px;
-  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
 
-  .city-card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .city-card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-    transform: translateY(-2px);
-  }
+  .city-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+  .city-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
 
-  .city-header {
-    background: var(--blue-light);
-    padding: 0.85rem 1.25rem;
-    border-bottom: 1px solid rgba(28,124,173,0.15);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .city-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--blue);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .city-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--blue-dark);
-  }
+  .city-header { background: var(--blue-light); padding: 0.85rem 1.25rem; border-bottom: 1px solid rgba(28,124,173,0.15); display: flex; align-items: center; gap: 10px; }
+  .city-dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; flex-shrink: 0; }
+  .city-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--blue-dark); }
 
   .city-body { padding: 1rem 1.25rem; }
 
-  .utility-row {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    padding: 7px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  .utility-row { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border); }
   .utility-row:last-child { border-bottom: none; }
 
   .util-badge {
@@ -218,57 +141,32 @@
   .badge-phone    { background: #faece7; color: #993C1D; }
 
   .util-info { flex: 1; min-width: 0; }
-  .util-provider {
-    font-size: 13px;
+  .util-provider { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .util-phone { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+  .util-note { font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 2px; line-height: 1.4; }
+
+  /* Clickable website links */
+  .util-link {
+    color: var(--blue);
+    text-decoration: none;
     font-weight: 500;
-    color: var(--text);
-    line-height: 1.4;
+    transition: text-decoration 0.1s;
   }
-  .util-phone {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 1px;
-  }
-  .util-note {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-style: italic;
-    margin-top: 2px;
-    line-height: 1.4;
-  }
+  .util-link:hover { text-decoration: underline; }
 
   .hidden { display: none !important; }
 
-  /* NO RESULTS */
-  .no-results {
-    grid-column: 1/-1;
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text-muted);
-    font-size: 15px;
-  }
+  .no-results { grid-column: 1/-1; text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 15px; }
 
-  /* FOOTER */
-  .footer {
-    margin-top: 2.5rem;
-    padding: 1.25rem 1.5rem;
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
+  .footer { margin-top: 2.5rem; padding: 1.25rem 1.5rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); font-size: 12px; color: var(--text-muted); line-height: 1.6; }
   .footer strong { color: var(--text); }
 
-  /* PRINT */
   @media print {
     body { background: white; }
     .controls { display: none; }
     .city-card { break-inside: avoid; box-shadow: none !important; transform: none !important; }
     .header { background: var(--blue) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
-
   @media (max-width: 600px) {
     .header { padding: 2rem 1.25rem 1.75rem; }
     .controls { padding: 1rem; }
@@ -312,14 +210,14 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Imperial Irrigation District (IID)</div>
-            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; iid.com</div>
+            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; <a href="https://www.iid.com" target="_blank" class="util-link">iid.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="water">
           <span class="util-badge badge-water">Water</span>
           <div class="util-info">
             <div class="util-provider">Indio Water Authority (IWA)</div>
-            <div class="util-phone">(760) 391-4038 &nbsp;|&nbsp; indiowater.org</div>
+            <div class="util-phone">(760) 391-4038 &nbsp;|&nbsp; <a href="https://www.indiowater.org" target="_blank" class="util-link">indiowater.org</a></div>
             <div class="util-note">Some areas: CVWD &mdash; (760) 398-2651</div>
           </div>
         </div>
@@ -327,14 +225,14 @@
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
           <span class="util-badge badge-trash">Trash</span>
           <div class="util-info">
             <div class="util-provider">Burrtec Waste &amp; Recycling</div>
-            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; <a href="https://www.burrtec.com" target="_blank" class="util-link">burrtec.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="sewer">
@@ -348,7 +246,7 @@
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier FiOS</div>
-            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (855) 525-9100</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (760) 340-2225 &nbsp;|&nbsp; <a href="https://www.frontier.com" target="_blank" class="util-link">Frontier</a>: (855) 525-9100</div>
           </div>
         </div>
       </div>
@@ -362,35 +260,35 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Imperial Irrigation District (IID)</div>
-            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; iid.com</div>
+            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; <a href="https://www.iid.com" target="_blank" class="util-link">iid.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="water">
           <span class="util-badge badge-water">Water</span>
           <div class="util-info">
             <div class="util-provider">Coachella Valley Water District (CVWD)</div>
-            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; cvwd.org</div>
+            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; <a href="https://www.cvwd.org" target="_blank" class="util-link">cvwd.org</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="gas">
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
           <span class="util-badge badge-trash">Trash</span>
           <div class="util-info">
             <div class="util-provider">Burrtec Waste Industries</div>
-            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; <a href="https://www.burrtec.com" target="_blank" class="util-link">burrtec.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="internet">
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier</div>
-            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (844) 740-0071</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (760) 340-2225 &nbsp;|&nbsp; <a href="https://www.frontier.com" target="_blank" class="util-link">Frontier</a>: (844) 740-0071</div>
           </div>
         </div>
       </div>
@@ -404,7 +302,7 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Southern California Edison (SCE)</div>
-            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; <a href="https://www.sce.com" target="_blank" class="util-link">sce.com</a></div>
             <div class="util-note">Some areas: IID &mdash; (760) 398-5811</div>
           </div>
         </div>
@@ -412,28 +310,28 @@
           <span class="util-badge badge-water">Water</span>
           <div class="util-info">
             <div class="util-provider">Coachella Valley Water District (CVWD)</div>
-            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; cvwd.org</div>
+            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; <a href="https://www.cvwd.org" target="_blank" class="util-link">cvwd.org</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="gas">
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
           <span class="util-badge badge-trash">Trash</span>
           <div class="util-info">
             <div class="util-provider">Burrtec Waste &amp; Recycling</div>
-            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; <a href="https://www.burrtec.com" target="_blank" class="util-link">burrtec.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="internet">
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier</div>
-            <div class="util-phone">Spectrum: (888) 892-2253 &nbsp;|&nbsp; Frontier: (877) 775-6373</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (888) 892-2253 &nbsp;|&nbsp; <a href="https://www.frontier.com" target="_blank" class="util-link">Frontier</a>: (877) 775-6373</div>
           </div>
         </div>
       </div>
@@ -447,7 +345,7 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Southern California Edison (SCE)</div>
-            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; <a href="https://www.sce.com" target="_blank" class="util-link">sce.com</a></div>
             <div class="util-note">N of Gerald Ford / E of Bob Hope Dr: IID &mdash; (760) 482-9600</div>
           </div>
         </div>
@@ -455,28 +353,28 @@
           <span class="util-badge badge-water">Water</span>
           <div class="util-info">
             <div class="util-provider">Coachella Valley Water District (CVWD)</div>
-            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; cvwd.org</div>
+            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; <a href="https://www.cvwd.org" target="_blank" class="util-link">cvwd.org</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="gas">
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
           <span class="util-badge badge-trash">Trash</span>
           <div class="util-info">
             <div class="util-provider">Burrtec Waste &amp; Recycling</div>
-            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; <a href="https://www.burrtec.com" target="_blank" class="util-link">burrtec.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="internet">
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier &nbsp;/&nbsp; HughesNet</div>
-            <div class="util-phone">Spectrum: (888) 438-2427 &nbsp;|&nbsp; Frontier: (844) 903-2037</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (888) 438-2427 &nbsp;|&nbsp; <a href="https://www.frontier.com" target="_blank" class="util-link">Frontier</a>: (844) 903-2037</div>
           </div>
         </div>
       </div>
@@ -490,7 +388,7 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Southern California Edison (SCE)</div>
-            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; <a href="https://www.sce.com" target="_blank" class="util-link">sce.com</a></div>
             <div class="util-note">Some areas: IID &mdash; (800) 303-7756</div>
           </div>
         </div>
@@ -498,28 +396,28 @@
           <span class="util-badge badge-water">Water</span>
           <div class="util-info">
             <div class="util-provider">Coachella Valley Water District (CVWD)</div>
-            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; cvwd.org</div>
+            <div class="util-phone">(760) 398-2651 &nbsp;|&nbsp; <a href="https://www.cvwd.org" target="_blank" class="util-link">cvwd.org</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="gas">
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
           <span class="util-badge badge-trash">Trash</span>
           <div class="util-info">
             <div class="util-provider">Burrtec Waste &amp; Recycling</div>
-            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; <a href="https://www.burrtec.com" target="_blank" class="util-link">burrtec.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="internet">
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier</div>
-            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (877) 751-5272</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (760) 340-2225 &nbsp;|&nbsp; <a href="https://www.frontier.com" target="_blank" class="util-link">Frontier</a>: (877) 751-5272</div>
           </div>
         </div>
       </div>
@@ -533,7 +431,7 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Imperial Irrigation District (IID)</div>
-            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; iid.com</div>
+            <div class="util-phone">(800) 303-7756 &nbsp;|&nbsp; <a href="https://www.iid.com" target="_blank" class="util-link">iid.com</a></div>
             <div class="util-note">Some areas: SCE &mdash; (800) 655-4555</div>
           </div>
         </div>
@@ -541,7 +439,7 @@
           <span class="util-badge badge-water">Water</span>
           <div class="util-info">
             <div class="util-provider">Coachella Water Authority</div>
-            <div class="util-phone">(760) 398-2702 &nbsp;|&nbsp; coachella.org</div>
+            <div class="util-phone">(760) 398-2702 &nbsp;|&nbsp; <a href="https://www.coachella.org" target="_blank" class="util-link">coachella.org</a></div>
             <div class="util-note">Also: CVWD &mdash; (760) 398-2651</div>
           </div>
         </div>
@@ -549,21 +447,21 @@
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
           <span class="util-badge badge-trash">Trash</span>
           <div class="util-info">
             <div class="util-provider">Burrtec Waste</div>
-            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; <a href="https://www.burrtec.com" target="_blank" class="util-link">burrtec.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="internet">
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier &nbsp;/&nbsp; Windstream</div>
-            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (855) 525-9100</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (760) 340-2225 &nbsp;|&nbsp; <a href="https://www.frontier.com" target="_blank" class="util-link">Frontier</a>: (855) 525-9100</div>
           </div>
         </div>
       </div>
@@ -577,21 +475,21 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Southern California Edison (SCE)</div>
-            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; <a href="https://www.sce.com" target="_blank" class="util-link">sce.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="water">
           <span class="util-badge badge-water">Water</span>
           <div class="util-info">
             <div class="util-provider">Desert Water Agency (DWA)</div>
-            <div class="util-phone">(760) 323-4971 &nbsp;|&nbsp; dwa.org</div>
+            <div class="util-phone">(760) 323-4971 &nbsp;|&nbsp; <a href="https://www.dwa.org" target="_blank" class="util-link">dwa.org</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="gas">
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
@@ -612,7 +510,7 @@
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier</div>
-            <div class="util-phone">Spectrum: (760) 340-1312 &nbsp;|&nbsp; Frontier: (866) 945-4714</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (760) 340-1312 &nbsp;|&nbsp; <a href="https://www.frontier.com" target="_blank" class="util-link">Frontier</a>: (866) 945-4714</div>
           </div>
         </div>
       </div>
@@ -626,14 +524,14 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Southern California Edison (SCE)</div>
-            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; <a href="https://www.sce.com" target="_blank" class="util-link">sce.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="water">
           <span class="util-badge badge-water">Water</span>
           <div class="util-info">
             <div class="util-provider">Desert Water Agency (W &amp; S of Whitewater Wash)</div>
-            <div class="util-phone">(760) 323-4971</div>
+            <div class="util-phone">(760) 323-4971 &nbsp;|&nbsp; <a href="https://www.dwa.org" target="_blank" class="util-link">dwa.org</a></div>
             <div class="util-note">E &amp; N of Whitewater Wash: CVWD &mdash; (800) 262-2651</div>
           </div>
         </div>
@@ -641,21 +539,21 @@
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(800) 427-2200 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
           <span class="util-badge badge-trash">Trash</span>
           <div class="util-info">
             <div class="util-provider">Burrtec Waste Industries</div>
-            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; burrtec.com</div>
+            <div class="util-phone">(760) 340-2113 &nbsp;|&nbsp; <a href="https://www.burrtec.com" target="_blank" class="util-link">burrtec.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="internet">
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum</div>
-            <div class="util-phone">(760) 764-5313</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (760) 764-5313</div>
           </div>
         </div>
       </div>
@@ -669,7 +567,7 @@
           <span class="util-badge badge-electric">Electric</span>
           <div class="util-info">
             <div class="util-provider">Southern California Edison (SCE)</div>
-            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; sce.com</div>
+            <div class="util-phone">(800) 655-4555 &nbsp;|&nbsp; <a href="https://www.sce.com" target="_blank" class="util-link">sce.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="water">
@@ -683,7 +581,7 @@
           <span class="util-badge badge-gas">Gas</span>
           <div class="util-info">
             <div class="util-provider">SoCalGas</div>
-            <div class="util-phone">(877) 238-0092 &nbsp;|&nbsp; socalgas.com</div>
+            <div class="util-phone">(877) 238-0092 &nbsp;|&nbsp; <a href="https://www.socalgas.com" target="_blank" class="util-link">socalgas.com</a></div>
           </div>
         </div>
         <div class="utility-row" data-type="trash">
@@ -697,7 +595,7 @@
           <span class="util-badge badge-internet">Internet</span>
           <div class="util-info">
             <div class="util-provider">Spectrum &nbsp;/&nbsp; Frontier FiOS</div>
-            <div class="util-phone">Spectrum: (760) 340-2225 &nbsp;|&nbsp; Frontier: (855) 525-9100</div>
+            <div class="util-phone"><a href="https://www.spectrum.com" target="_blank" class="util-link">Spectrum</a>: (760) 340-2225 &nbsp;|&nbsp; <a href="https://www.frontier.com" target="_blank" class="util-link">Frontier</a>: (855) 525-9100</div>
           </div>
         </div>
       </div>
